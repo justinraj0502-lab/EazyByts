@@ -19,6 +19,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AdminLogin from "./admin/AdminLogin";
 import AdminDashboard from "./admin/AdminDashboard";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function PortfolioHome() {
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -30,7 +32,7 @@ function PortfolioHome() {
 
   const fetchSettings = async () => {
   try {
-    const response = await fetch("http://localhost:5000/api/settings");
+    const response = await fetch("${API_URL}/api/settings");
     const data = await response.json();
 
     if (data.success) {
@@ -45,7 +47,7 @@ function PortfolioHome() {
 
   const fetchProjects = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/projects");
+      const response = await fetch("${API_URL}/api/projects");
       const data = await response.json();
 
       if (data.success) {
@@ -61,7 +63,7 @@ function PortfolioHome() {
   const fetchBlogs = async () => {
   try {
     const response = await fetch(
-      "http://localhost:5000/api/blog"
+      "${API_URL}/api/blog"
     );
 
     const data = await response.json();
@@ -126,7 +128,7 @@ fetchBlogs();
 
   try {
     const response = await fetch(
-      "http://localhost:5000/api/messages",
+      "${API_URL}/api/messages",
       {
         method: "POST",
         headers: {

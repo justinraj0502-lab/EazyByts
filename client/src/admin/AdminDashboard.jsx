@@ -14,6 +14,8 @@ import BlogManager from "./BlogManager";
 import MessagesManager from "./MessagesManager";
 import SettingsManager from "./SettingsManager";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function AdminDashboard() {
   const navigate = useNavigate();
 
@@ -36,7 +38,7 @@ function AdminDashboard() {
       setUser(JSON.parse(savedUser));
     }
 
-    fetch("http://localhost:5000/api/messages", {
+    fetch(`${API_URL}/api/messages`, {
     headers: {
     Authorization: `Bearer ${token}`,
     },
@@ -56,7 +58,7 @@ function AdminDashboard() {
     );
     });
 
-    fetch("http://localhost:5000/api/projects")
+    fetch(`${API_URL}/api/projects`)
     .then((response) => response.json())
     .then((data) => {
     if (data.success) {
@@ -67,7 +69,7 @@ function AdminDashboard() {
        console.error("Failed to fetch project count:", error);
     });
 
-    fetch("http://localhost:5000/api/blog")
+    fetch(`${API_URL}/api/blog`)
     .then((response) => response.json())
     .then((data) => {
     if (data.success) {

@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 
 function MessagesManager() {
-  const API_URL = "http://localhost:5000";
+  const API_URL = import.meta.env.VITE_API_URL;
 
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
