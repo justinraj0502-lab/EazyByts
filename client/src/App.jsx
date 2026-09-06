@@ -29,25 +29,22 @@ function PortfolioHome() {
   const [settings, setSettings] = useState(null);
 
   useEffect(() => {
-
   const fetchSettings = async () => {
-  try {
-    const response = await fetch("${API_URL}/api/settings");
-    const data = await response.json();
+    try {
+      const response = await fetch(`${API_URL}/api/settings`);
+      const data = await response.json();
 
-    if (data.success) {
-      setSettings(data.settings);
+      if (data.success) {
+        setSettings(data.settings);
+      }
+    } catch (error) {
+      console.error("Failed to load settings:", error);
     }
-  } catch (error) {
-    console.error("Failed to load settings:", error);
-  }
   };
-
-  fetchSettings();
 
   const fetchProjects = async () => {
     try {
-      const response = await fetch("${API_URL}/api/projects");
+      const response = await fetch(`${API_URL}/api/projects`);
       const data = await response.json();
 
       if (data.success) {
@@ -58,32 +55,22 @@ function PortfolioHome() {
     }
   };
 
-  fetchProjects();
-
   const fetchBlogs = async () => {
-  try {
-    const response = await fetch(
-      "${API_URL}/api/blog"
-    );
+    try {
+      const response = await fetch(`${API_URL}/api/blog`);
+      const data = await response.json();
 
-    const data = await response.json();
-
-    if (data.success) {
-      setBlogs(
-        data.blogs.filter(
-          (blog) => blog.published
-        )
-      );
+      if (data.success) {
+        setBlogs(data.blogs.filter((blog) => blog.published));
+      }
+    } catch (error) {
+      console.error("Failed to load blogs:", error);
     }
-  } catch (error) {
-    console.error(
-      "Failed to load blogs:",
-      error
-    );
-  }
-};
+  };
 
-fetchBlogs();
+  fetchSettings();
+  fetchProjects();
+  fetchBlogs();
 }, []);
 
   const skills = [
