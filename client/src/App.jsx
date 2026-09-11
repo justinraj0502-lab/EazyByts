@@ -114,8 +114,8 @@ function PortfolioHome() {
   e.preventDefault();
 
   try {
-    const response = await fetch(
-      "${API_URL}/api/messages",
+      const response = await fetch(
+      `${API_URL}/api/messages`,
       {
         method: "POST",
         headers: {
