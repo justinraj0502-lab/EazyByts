@@ -19,7 +19,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AdminLogin from "./admin/AdminLogin";
 import AdminDashboard from "./admin/AdminDashboard";
 
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
 function PortfolioHome() {
 
@@ -114,7 +114,7 @@ function PortfolioHome() {
   e.preventDefault();
 
   try {
-      const response = await fetch(
+    const response = await fetch(
       `${API_URL}/api/messages`,
       {
         method: "POST",
@@ -125,7 +125,20 @@ function PortfolioHome() {
       }
     );
 
-    const data = await response.json();
+    const text = await response.text();
+
+    console.log("Response status:", response.status);
+    console.log("Response body:", text);
+
+    let data;
+
+    try {
+      data = text ? JSON.parse(text) : {};
+    } catch (parseError) {
+      throw new Error(
+        `Server returned invalid response: ${text || "Empty response"}`
+      );
+    }
 
     if (!response.ok) {
       throw new Error(
@@ -141,6 +154,7 @@ function PortfolioHome() {
       subject: "",
       message: "",
     });
+
   } catch (error) {
     console.error("Contact form error:", error);
 
