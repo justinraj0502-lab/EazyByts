@@ -359,7 +359,7 @@ const technologyCount = [
         <div className="stats">
 
           <div className="stat">
-            <strong>{projects.length.toString().padStart(2, "0")}+</strong>
+            <strong>{projects.length.toString().padStart(2, "0")}</strong>
             <span>Projects built</span>
           </div>
 
