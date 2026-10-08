@@ -26,7 +26,7 @@ const allowedOrigins = [
   "http://localhost:5176",
   "http://localhost:5177",
   "http://localhost:5178",
-  "https://subtle-puffpuff-2466af.netlify.app",
+  "https://justinraj-portfolio.netlify.app",
 ];
 
 app.use(
